@@ -1,6 +1,7 @@
-﻿<h1>Hi {{currentUser.firstName}}!</h1>
-<p>You're logged in with Angular 8!!</p>
-<h3>All registered users:</h3>
+﻿<div class="active-cyan-3 active-cyan-4 mb-4">
+    <input  formControlName="search" class="form-control" type="text" placeholder="Search" aria-label="Search">
+</div>
+
 <ul>
     <li *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}})
