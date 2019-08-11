@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { SearchComponent } from './search';
 import { AlertComponent } from './_components';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AlertComponent } from './_components';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        SearchComponent,
         AlertComponent
     ],
     providers: [
