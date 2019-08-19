@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -9,24 +10,56 @@ import { fakeBackendProvider } from './_helpers';
 import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
+import { UserHomeComponent } from './user-home';
+import { UserLoginComponent } from './user-login';
+import { UserRegisterComponent } from './user-register';
+import { UserTrainingCompletedComponent } from './user-training-completed';
+import { UserTrainingProgressComponent } from './user-training-progress';
+
+import { MentorHomeComponent } from './mentor-home';
+import { MentorLoginComponent } from './mentor-login';
+import { MentorRegisterComponent } from './mentor-register';
+import { MentorProfileComponent } from './mentor-profile';
+import { MentorPaymentsComponent } from './mentor-payments';
+import { MentorEditSkillsComponent } from './mentor-edit-skills';
+import { MentorTrainingProgressComponent } from './mentor-training-progress';
+import { MentorTrainingCompletedComponent } from './mentor-training-completed';
+
+import { AdminBlockComponent } from './admin-block';
+import { AdminEditTechComponent } from './admin-edit-tech';
+
 import { AlertComponent } from './_components';
+import { TrainingSearchComponent } from './training-search';
+
+
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        NgbModule
     ],
     declarations: [
         AppComponent,
-        HomeComponent,
-        LoginComponent,
-        RegisterComponent,
-        AlertComponent
+        UserHomeComponent,
+        UserLoginComponent,
+        UserRegisterComponent,
+		UserTrainingCompletedComponent,
+		UserTrainingProgressComponent,
+		MentorHomeComponent,
+        MentorLoginComponent,
+        MentorRegisterComponent,
+		MentorProfileComponent,
+		MentorPaymentsComponent,
+		MentorTrainingCompletedComponent,
+		MentorTrainingProgressComponent,
+		MentorEditSkillsComponent,
+		AdminBlockComponent,
+		AdminEditTechComponent,
+        AlertComponent,
+        TrainingSearchComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

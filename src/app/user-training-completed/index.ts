@@ -1,0 +1,1 @@
+export * from './user-training-completed.component';

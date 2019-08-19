@@ -5,8 +5,8 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@/_services';
 
-@Component({ templateUrl: 'login.component.html' })
-export class LoginComponent implements OnInit {
+@Component({ templateUrl: 'mentor-login.component.html' })
+export class MentorLoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
-            this.router.navigate(['/']);
+        if (this.authenticationService.currentMentorValue) {
+            this.router.navigate(['/mentorHome']);
         }
     }
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/mentorHome';
     }
 
     // convenience getter for easy access to form fields
@@ -50,10 +50,11 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.mentorLogin(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
+                    console.log("here to navigate");
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

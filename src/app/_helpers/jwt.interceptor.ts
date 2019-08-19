@@ -19,6 +19,16 @@ export class JwtInterceptor implements HttpInterceptor {
             });
         }
 
+        // add authorization header with jwt token if available
+        let currentMentor = this.authenticationService.currentMentorValue;
+        if (currentMentor && currentMentor.token) {
+            request = request.clone({
+                setHeaders: { 
+                    Authorization: `Bearer ${currentMentor.token}`
+                }
+            });
+        }
+
         return next.handle(request);
     }
 }

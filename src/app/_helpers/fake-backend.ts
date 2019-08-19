@@ -5,6 +5,8 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
+let mentors = JSON.parse(localStorage.getItem('mentors')) || [];
+
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -21,13 +23,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function handleRoute() {
             switch (true) {
                 case url.endsWith('/users/authenticate') && method === 'POST':
-                    return authenticate();
+                    return authenticateUser();
                 case url.endsWith('/users/register') && method === 'POST':
-                    return register();
+                    return registerUser();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/mentors/authenticate') && method === 'POST':
+                    return authenticateMentor();
+                case url.endsWith('/mentors/register') && method === 'POST':
+                        return registerMentor();
+                case url.endsWith('/mentors') && method === 'GET':
+                        return getMentors();
+                case url.match(/\/mentors\/\d+$/) && method === 'DELETE':
+                        return deleteMentor();    
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -36,7 +46,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // route functions
 
-        function authenticate() {
+        function authenticateUser() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
             if (!user) return error('Username or password is incorrect');
@@ -49,7 +59,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             })
         }
 
-        function register() {
+        function authenticateMentor() {
+            const { username, password } = body;
+            const mentor = mentors.find(x => x.username === username && x.password === password);
+            if (!mentor) return error('Username or password is incorrect');
+            return ok({
+                id: mentor.id,
+                username: mentor.username,
+                firstName: mentor.firstName,
+                lastName: mentor.lastName,
+                token: 'fake-jwt-token'
+            })
+        }
+
+        function registerUser() {
             const user = body
 
             if (users.find(x => x.username === user.username)) {
@@ -63,9 +86,28 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
+        function registerMentor() {
+            const mentor = body
+
+            if (mentors.find(x => x.username === mentor.username)) {
+                return error('Username "' + mentor.username + '" is already taken')
+            }
+
+            mentor.id = mentors.length ? Math.max(...mentors.map(x => x.id)) + 1 : 1;
+            mentors.push(mentor);
+            localStorage.setItem('mentors', JSON.stringify(mentors));
+
+            return ok();
+        }
+
         function getUsers() {
             if (!isLoggedIn()) return unauthorized();
             return ok(users);
+        }
+
+        function getMentors() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(mentors);
         }
 
         function deleteUser() {
@@ -73,6 +115,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
+            return ok();
+        }
+
+        function deleteMentor() {
+            if (!isLoggedIn()) return unauthorized();
+
+            mentors = mentors.filter(x => x.id !== idFromUrl());
+            localStorage.setItem('mentors', JSON.stringify(mentors));
             return ok();
         }
 
