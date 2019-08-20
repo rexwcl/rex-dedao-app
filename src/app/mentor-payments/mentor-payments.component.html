@@ -1,18 +1,27 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Trainer Name</th>
-      <th scope="col">Avg Rating</th>
-      <th scope="col">No. of Trainings completed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Vincent</td>
-      <td>5</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col"> <caption>#</caption> </div>
+  <div class="col"> <caption>Training</caption> </div>
+  <div class="col"> <caption>Progress</caption> </div>
+  <div class="col"> <caption>FeeCharged</caption> </div>
+</div>
+
+<div  *ngFor="let payment of payments">
+<div class="row">
+  <div class="col">
+      <img src="../_content/spring-boot-logo.png" alt="Training" width="100" height="100"/>
+  </div>
+  <div class="col">
+      <p>{{ payment.trainingDescription }}</p>
+  </div>
+  <div class="col">
+      <p>{{ payment.progress }}</p>
+  </div>
+  <div class="col">
+          <p>{{ payment.feeCharged }}</p>
+  </div>
+  <div class="col">
+      <a href="" class="btn btn-primary" role="button">
+          Withdraw</a>
+  </div> 
+</div>
+</div>

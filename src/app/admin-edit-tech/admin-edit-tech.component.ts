@@ -10,11 +10,23 @@ import { MentorService } from '@/_services';
   styleUrls: []
 })
 export class AdminEditTechComponent implements OnInit {
+  techs = [];
 
   constructor() { }
 
   ngOnInit() {
+    this.loadTechs();
+  }
 
+  tech:object = {
+    name: 'Vincent',
+    description: 5,
+    feeCharged: '$100'
+  }
+
+  private loadTechs() {
+    this.techs.push(this.tech);
+    this.techs.push(this.tech);
   }
 
 }

@@ -11,10 +11,23 @@ import { MentorService } from '@/_services';
 })
 export class MentorPaymentsComponent implements OnInit {
 
+  payments = [];
+
   constructor() { }
 
   ngOnInit() {
+    this.loadPayments();
+  }
 
+  payment:object = {
+    trainingDescription: 'Spring MVC',
+    progress: 0.25,
+    feeCharged: '$100'
+  }
+
+  private loadPayments() {
+    this.payments.push(this.payment);
+    this.payments.push(this.payment);
   }
 
 }

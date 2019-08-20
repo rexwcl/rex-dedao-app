@@ -10,11 +10,25 @@ import { MentorService } from '@/_services';
   styleUrls: []
 })
 export class MentorEditSkillsComponent implements OnInit {
+  skills = []; 
 
   constructor() { }
 
   ngOnInit() {
+    this.loadSkills();
+  }
 
+  skill:object = {
+    trainerName: 'Vincent',
+    avgRating: 5,
+    numOfTrainingsCompleted: 10,
+    feeCharged: '$100',
+    trainingUrl: '/mentorLogin'   
+  }
+
+  private loadSkills() {
+    this.skills.push(this.skill);
+    this.skills.push(this.skill);
   }
 
 }

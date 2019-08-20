@@ -5,8 +5,8 @@ import { map, filter, debounceTime, tap, switchAll } from 'rxjs/operators';
 import { MentorService } from '@/_services';
 
 @Component({
-  selector: 'mentor-profile',
-  templateUrl: './mentor-profile.component.html',
+  selector: 'mentor-history',
+  templateUrl: './mentor-history.component.html',
   styleUrls: []
 })
 
@@ -19,7 +19,7 @@ export class MentorHistoryComponent implements OnInit {
   }
 
   item:object = {
-    trainingsDelivered: 50,
+    trainingDelivered: "Spring Basic Training",
     rating: 5
   }
 
