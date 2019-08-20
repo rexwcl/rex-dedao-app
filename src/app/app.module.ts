@@ -19,7 +19,7 @@ import { UserTrainingProgressComponent } from './user-training-progress';
 import { MentorHomeComponent } from './mentor-home';
 import { MentorLoginComponent } from './mentor-login';
 import { MentorRegisterComponent } from './mentor-register';
-import { MentorProfileComponent } from './mentor-profile';
+import { MentorHistoryComponent } from './mentor-history';
 import { MentorPaymentsComponent } from './mentor-payments';
 import { MentorEditSkillsComponent } from './mentor-edit-skills';
 import { MentorTrainingProgressComponent } from './mentor-training-progress';
@@ -51,7 +51,7 @@ import { TrainingSearchComponent } from './training-search';
 		MentorHomeComponent,
         MentorLoginComponent,
         MentorRegisterComponent,
-		MentorProfileComponent,
+		MentorHistoryComponent,
 		MentorPaymentsComponent,
 		MentorTrainingCompletedComponent,
 		MentorTrainingProgressComponent,

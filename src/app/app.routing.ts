@@ -9,7 +9,7 @@ import { UserTrainingCompletedComponent } from './user-training-completed';
 import { MentorHomeComponent } from './mentor-home';
 import { MentorLoginComponent } from './mentor-login';
 import { MentorRegisterComponent } from './mentor-register';
-import { MentorProfileComponent } from './mentor-profile';
+import { MentorHistoryComponent } from './mentor-history';
 import { MentorPaymentsComponent } from './mentor-payments';
 import { MentorTrainingCompletedComponent } from './mentor-training-completed';
 import { MentorTrainingProgressComponent } from './mentor-training-progress';
@@ -30,7 +30,7 @@ const routes: Routes = [
 	{ path: 'mentorHome', component: MentorHomeComponent, canActivate: [AuthGuard] },
     { path: 'mentorLogin', component: MentorLoginComponent },
     { path: 'mentorRegister', component: MentorRegisterComponent },
-	{ path: 'mentorProfile', component: MentorProfileComponent },
+	{ path: 'mentorHistory', component: MentorHistoryComponent },
 	{ path: 'mentorPayments', component: MentorPaymentsComponent },
 	{ path: 'mentorEditSkills', component: MentorEditSkillsComponent },
 	{ path: 'mentorTrainingComp', component: MentorTrainingCompletedComponent },

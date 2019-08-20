@@ -1,14 +1,17 @@
-﻿<div class="form-group">
-	<select class="selectpicker show-tick" title="请选择一项" data-live-search="true" data-size="20">
-	<option>2:00 PM to 4:00 PM</option>
-	<option>4:00 PM to 6:00 PM</option>
-	<option>6:00 PM to 8:00 PM</option>
-	</select>
-</div>
-
-<ul>
-    <li *ngFor="let mentor of mentors">
-        {{mentor.username}} ({{mentor.firstName}} {{mentor.lastName}})
-        - <a (click)="deleteMentor(mentor.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+﻿<ngb-tabset>
+		<ngb-tab title="Current Trainings">
+			<ng-template ngbTabContent>
+				<mentor-training-progress></mentor-training-progress> 
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab title="Completed Trainings">
+			<ng-template ngbTabContent>
+				<mentor-training-completed></mentor-training-completed>
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab title="Edit Skills">
+				<ng-template ngbTabContent>
+					<mentor-edit-skills></mentor-edit-skills>
+				</ng-template>
+		</ngb-tab>
+</ngb-tabset>

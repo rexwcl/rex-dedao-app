@@ -9,12 +9,23 @@ import { MentorService } from '@/_services';
   templateUrl: './mentor-profile.component.html',
   styleUrls: []
 })
-export class MentorProfileComponent implements OnInit {
 
+export class MentorHistoryComponent implements OnInit {
+  items = []; 
   constructor() { }
 
   ngOnInit() {
+    this.loadTrainings();
+  }
 
+  item:object = {
+    trainingsDelivered: 50,
+    rating: 5
+  }
+
+  private loadTrainings() {
+    this.items.push(this.item);
+    this.items.push(this.item);
   }
 
 }

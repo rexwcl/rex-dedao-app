@@ -5,24 +5,16 @@
     <div class="col"> <caption>No. of Trainings Completed</caption> </div>
 </div>
 
-<div  *ngFor="let result of results">
+<div  *ngFor="let item of items">
 <div class="row">
     <div class="col">
         <img src="../_content/spring-boot-logo.png" alt="Training" width="100" height="100"/>
     </div>
     <div class="col">
-        <p>{{ result.trainerName }}</p>
+        <p>{{ item.trainingsDelivered }}</p>
     </div>
     <div class="col">
-        <p>{{ result.avgRating }}</p>
-    </div>
-    <div class="col">
-            <p>{{ result.feeCharged }}</p>
-        </div>   
-    <div class="col">
-        <p>{{ result.numOfTrainingsCompleted }}</p>
-        <a href="{{ result.trainingUrl }}" class="btn btn-primary" role="button">
-            Propose Training</a>
-    </div>
+        <p>{{ item.rating }}</p>
+    </div> 
 </div>
 </div>

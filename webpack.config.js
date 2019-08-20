@@ -24,6 +24,10 @@ module.exports = {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'less-loader']
             },
+            {
+                test: /\.(png|jpg)$/,
+                use: ['url-loader']
+            },
 
             // workaround for warning: System.import() is deprecated and will be removed soon. Use import() instead.
             {
