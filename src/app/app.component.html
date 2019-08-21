@@ -6,6 +6,13 @@
     </div>
 </nav>
 
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!(currentUser || currentMentor)">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/userLogin">User Login</a>
+        <a class="nav-item nav-link" routerLink="/mentorLogin">Mentor Login</a>
+    </div>
+</nav>
+
 <!-- main app container -->
 <div class="jumbotron">
     <div class="container">
