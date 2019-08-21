@@ -21,7 +21,7 @@
         </div>   
     <div class="col">
         <p>{{ result.numOfTrainingsCompleted }}</p>
-        <a href="{{ result.trainingUrl }}" class="btn btn-primary" role="button">
+        <a (click)="proposeTraining()" class="btn btn-primary" role="button">
             Propose Training</a>
     </div>
 </div>
