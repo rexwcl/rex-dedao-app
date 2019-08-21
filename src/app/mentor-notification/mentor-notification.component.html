@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col"> <caption>#</caption> </div>
+    <div class="col"> <caption>Trainer Name</caption> </div>
+    <div class="col"> <caption>Avg Rating</caption> </div>
+	<div class="col"> <caption>Fee Charged</caption> </div>
+    <div class="col"> <caption>No. of Trainings Completed</caption> </div>
+</div>
+
+<div  *ngFor="let notification of notifications">
+<div class="row">
+    <div class="col">
+        <img src="../_content/spring-boot-logo.png" alt="Training" width="100" height="100"/>
+    </div>
+    <div class="col">
+        <p>{{ notification.trainerName }}</p>
+    </div>
+    <div class="col">
+        <p>{{ notification.avgRating }}</p>
+    </div>
+    <div class="col">
+            <p>{{ notification.feeCharged }}</p>
+        </div>   
+    <div class="col">
+        <p>{{ notification.numOfTrainingsCompleted }}</p>
+        <a (click)="confirmProposal()" class="btn btn-primary" role="button">
+            Confirm</a>
+		<a (click)="rejectProposal()" class="btn btn-primary" role="button">
+            Reject</a>
+    </div>
+</div>
+</div>
