@@ -1,6 +1,6 @@
 ﻿export class Admin {
     id: number;
-    adminName: string;
+    username: string;
     password: string;
     token: string;
 }

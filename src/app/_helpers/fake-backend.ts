@@ -2,6 +2,8 @@
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { Admin } from '@/_models';
+
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
@@ -37,7 +39,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.endsWith('/mentors') && method === 'GET':
                         return getMentors();
                 case url.match(/\/mentors\/\d+$/) && method === 'DELETE':
-                        return deleteMentor();    
+                        return deleteMentor();   
+                case url.endsWith('/admin/authenticate') && method === 'POST':
+                        return authenticateAdmin(); 
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -68,6 +72,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 username: mentor.username,
                 firstName: mentor.firstName,
                 lastName: mentor.lastName,
+                token: 'fake-jwt-token'
+            })
+        }
+
+        function authenticateAdmin() {
+            const { username, password } = body;
+            if (!('admin' === username && 'admin' === password))
+               return error('Username or password is incorrect');
+
+            return ok({
+                id: 1,
+                username: 'admin',
                 token: 'fake-jwt-token'
             })
         }

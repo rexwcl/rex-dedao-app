@@ -65,7 +65,7 @@ export class AuthenticationService {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentAdmin', JSON.stringify(admin));
                 this.currentAdminSubject.next(admin);
-                return mentor;
+                return admin;
             }));
     }
 
@@ -81,7 +81,7 @@ export class AuthenticationService {
         this.currentMentorSubject.next(null);
     }
 	
-	mentorLogout() {
+	adminLogout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentAdmin');
         this.currentAdminSubject.next(null);
