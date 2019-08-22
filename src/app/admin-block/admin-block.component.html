@@ -1,13 +1,13 @@
 <ul>
     <li *ngFor="let mentor of mentors">
         {{mentor.username}} ({{mentor.firstName}} {{mentor.lastName}})
-        - <a (click)="deleteMentor(mentor.id)" class="text-danger">Delete</a>
+        - <a (click)="blockMentor(mentor.id)" class="text-danger">Block</a>
     </li>
 </ul>
 
 <ul>
     <li *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+        - <a (click)="blockUser(user.id)" class="text-danger">Block</a>
     </li>
 </ul>

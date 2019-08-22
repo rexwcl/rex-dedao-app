@@ -21,7 +21,11 @@ export class AdminBlockComponent implements OnInit {
     this.loadAllUsers();
   }
 
-  deleteMentor(id: number) {
+  // isBlocked(){
+  //    return true;
+  // }
+
+  blockMentor(id: number) {
     this.mentorService.delete(id)
         .pipe(first())
         .subscribe(() => this.loadAllMentors());
@@ -33,7 +37,7 @@ export class AdminBlockComponent implements OnInit {
         .subscribe(mentors => this.mentors = mentors);
   }
 
-  deleteUser(id: number) {
+  blockUser(id: number) {
     this.userService.delete(id)
         .pipe(first())
         .subscribe(() => this.loadAllUsers());

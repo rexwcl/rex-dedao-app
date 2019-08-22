@@ -1,7 +1,8 @@
 ﻿<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
 <div class="form-group">
-    <label for="Trainer Available Period">Trainer Available Period</label>
-	<select class="selectpicker show-tick" title="Please choose one option" data-live-search="true" data-size="20">
+    <label for="trainerAvailablePeriod">Trainer Available Period</label>
+    <select class="selectpicker show-tick" title="Please choose one option" data-live-search="true" data-size="20" 
+    formControlName="trainerAvailablePeriod">
 	<option>2:00 PM to 4:00 PM</option>
 	<option>4:00 PM to 6:00 PM</option>
 	<option>6:00 PM to 8:00 PM</option>
@@ -10,7 +11,8 @@
 
 <div class="form-group">
 <div class="active-cyan-3 active-cyan-4 mb-4">
-    <input  class="form-control" type="text" placeholder="Search" aria-label="Search">
+    <input  class="form-control" type="text" placeholder="Search" aria-label="Search" 
+    formControlName="searchText" >
 </div>
 </div>
 </form>

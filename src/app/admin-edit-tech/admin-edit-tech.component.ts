@@ -11,6 +11,7 @@ import { MentorService } from '@/_services';
 })
 export class AdminEditTechComponent implements OnInit {
   techs = [];
+  isActive: boolean = false;
 
   constructor() { }
 
@@ -19,14 +20,22 @@ export class AdminEditTechComponent implements OnInit {
   }
 
   tech:object = {
-    name: 'Vincent',
-    description: 5,
+    name: 'Spring Boot',
+    description: 'Spring Boot technique training',
     feeCharged: '$100'
   }
 
   private loadTechs() {
     this.techs.push(this.tech);
     this.techs.push(this.tech);
+  }
+
+  private edit() {
+    this.isActive = true;
+  }
+
+  private submitEditInfo() {
+    this.isActive = false;
   }
 
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User, Mentor } from '@/_models';
+import { User, Mentor, Admin } from '@/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -12,6 +12,9 @@ export class AuthenticationService {
 
     private currentMentorSubject: BehaviorSubject<Mentor>;
     public currentMentor: Observable<Mentor>;
+	
+	private currentAdminSubject: BehaviorSubject<Admin>;
+    public currentAdmin: Observable<Admin>;
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -19,6 +22,9 @@ export class AuthenticationService {
 
         this.currentMentorSubject = new BehaviorSubject<Mentor>(JSON.parse(localStorage.getItem('currentMentor')));
         this.currentMentor = this.currentMentorSubject.asObservable();
+		
+		this.currentAdminSubject = new BehaviorSubject<Admin>(JSON.parse(localStorage.getItem('currentAdmin')));
+        this.currentAdmin = this.currentAdminSubject.asObservable();
     }
 
     public get currentUserValue(): User {
@@ -27,6 +33,10 @@ export class AuthenticationService {
 
     public get currentMentorValue(): Mentor {
         return this.currentMentorSubject.value;
+    }
+	
+	public get currentAdminValue(): Admin {
+        return this.currentAdminSubject.value;
     }
 
     userLogin(username, password) {
@@ -48,6 +58,16 @@ export class AuthenticationService {
                 return mentor;
             }));
     }
+	
+	adminLogin(username, password) {
+        return this.http.post<any>(`${config.apiUrl}/admin/authenticate`, { username, password })
+            .pipe(map(admin => {
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentAdmin', JSON.stringify(admin));
+                this.currentAdminSubject.next(admin);
+                return mentor;
+            }));
+    }
 
     userLogout() {
         // remove user from local storage and set current user to null
@@ -59,5 +79,11 @@ export class AuthenticationService {
         // remove user from local storage and set current user to null
         localStorage.removeItem('currentMentor');
         this.currentMentorSubject.next(null);
+    }
+	
+	mentorLogout() {
+        // remove user from local storage and set current user to null
+        localStorage.removeItem('currentAdmin');
+        this.currentAdminSubject.next(null);
     }
 }

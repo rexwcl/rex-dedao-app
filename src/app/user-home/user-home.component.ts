@@ -14,17 +14,22 @@ export class UserHomeComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
+        private formBuilder: FormBuilder
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
     }
 
     ngOnInit() {
+        this.searchForm = this.formBuilder.group({
+            trainerAvailablePeriod: [''],
+            searchText: ['']
+        });
     }
 
     onSubmit() {
-        this.submitted = true;
+        // this.submitted = true;
 
-        this.loading = true;
+        // this.loading = true;
         // this.authenticationService.mentorLogin(this.f.username.value, this.f.password.value)
         //     .pipe(first())
         //     .subscribe(

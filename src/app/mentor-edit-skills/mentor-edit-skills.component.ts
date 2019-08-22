@@ -11,6 +11,7 @@ import { MentorService } from '@/_services';
 })
 export class MentorEditSkillsComponent implements OnInit {
   skills = []; 
+  isActive: boolean = false;
 
   constructor() { }
 
@@ -19,16 +20,22 @@ export class MentorEditSkillsComponent implements OnInit {
   }
 
   skill:object = {
-    trainerName: 'Vincent',
-    avgRating: 5,
-    numOfTrainingsCompleted: 10,
-    feeCharged: '$100',
-    trainingUrl: '/mentorLogin'   
+    name: 'Spring Boot',
+    description: 'Spring Boot technique training',
+    feeCharged: '$100'
   }
 
   private loadSkills() {
     this.skills.push(this.skill);
     this.skills.push(this.skill);
+  }
+
+  private edit() {
+    this.isActive = true;
+  }
+
+  private submitEditInfo() {
+    this.isActive = false;
   }
 
 }

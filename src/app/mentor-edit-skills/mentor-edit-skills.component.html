@@ -20,8 +20,10 @@
             <p>{{ skill.yearsOfExperience }}</p>
     </div>
     <div class="col">
-        <a href="" class="btn btn-primary" role="button">
+        <a *ngIf="!isActive" (click)="edit()" class="btn btn-primary" role="button">
             Edit</a>
+        <a *ngIf="isActive" (click)="submitEditInfo()"class="btn btn-primary" role="button">
+            Save</a>    
     </div> 
 </div>
 </div>
