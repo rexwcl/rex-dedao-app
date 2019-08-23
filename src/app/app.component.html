@@ -1,8 +1,15 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser || currentMentor || currentAdmin">
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
-        <a class="nav-item nav-link" routerLink="/notification">Notification</a>
+        <a class="nav-item nav-link" routerLink="/userNotification">Notification</a>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentMentor">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" routerLink="/mentorNotification">Notification</a>
     </div>
 </nav>
 

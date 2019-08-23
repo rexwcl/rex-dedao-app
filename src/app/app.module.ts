@@ -15,6 +15,7 @@ import { UserLoginComponent } from './user-login';
 import { UserRegisterComponent } from './user-register';
 import { UserTrainingCompletedComponent } from './user-training-completed';
 import { UserTrainingProgressComponent } from './user-training-progress';
+import { UserNotificationComponent } from './user-notification';
 
 import { MentorHomeComponent } from './mentor-home';
 import { MentorLoginComponent } from './mentor-login';
@@ -24,6 +25,7 @@ import { MentorPaymentsComponent } from './mentor-payments';
 import { MentorEditSkillsComponent } from './mentor-edit-skills';
 import { MentorTrainingProgressComponent } from './mentor-training-progress';
 import { MentorTrainingCompletedComponent } from './mentor-training-completed';
+import { MentorNotificationComponent } from './mentor-notification';
 
 import { AdminBlockComponent } from './admin-block';
 import { AdminEditTechComponent } from './admin-edit-tech';
@@ -49,7 +51,8 @@ import { TrainingSearchComponent } from './training-search';
         UserLoginComponent,
         UserRegisterComponent,
 		UserTrainingCompletedComponent,
-		UserTrainingProgressComponent,
+        UserTrainingProgressComponent,
+        UserNotificationComponent,
 		MentorHomeComponent,
         MentorLoginComponent,
         MentorRegisterComponent,
@@ -57,7 +60,8 @@ import { TrainingSearchComponent } from './training-search';
 		MentorPaymentsComponent,
 		MentorTrainingCompletedComponent,
 		MentorTrainingProgressComponent,
-		MentorEditSkillsComponent,
+        MentorEditSkillsComponent,
+        MentorNotificationComponent,
 		AdminBlockComponent,
         AdminEditTechComponent,
         AdminHomeComponent,
