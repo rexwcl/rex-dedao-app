@@ -80,12 +80,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const { username, password } = body;
             if (!('admin' === username && 'admin' === password))
                return error('Username or password is incorrect');
-
+            
             return ok({
-                id: 1,
                 username: 'admin',
                 token: 'fake-jwt-token'
-            })
+            });
         }
 
         function registerUser() {

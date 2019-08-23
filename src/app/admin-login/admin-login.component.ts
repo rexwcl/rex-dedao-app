@@ -21,13 +21,13 @@ export class AdminLoginComponent implements OnInit {
     ) {
         // redirect to home if already logged in
         if (this.authenticationService.currentAdminValue) {
-            this.router.navigate(['/adminHome']);
+             this.router.navigate(['/adminHome']);
         }
     }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            adminName: ['', Validators.required],
+            username: ['', Validators.required],
             password: ['', Validators.required]
         });
 
@@ -50,11 +50,12 @@ export class AdminLoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.adminLogin(this.f.adminName.value, this.f.password.value)
+        this.authenticationService.adminLogin(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    console.log(data);
+                    this.router.navigate(['/adminHome']);
                 },
                 error => {
                     this.alertService.error(error);

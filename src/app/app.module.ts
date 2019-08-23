@@ -27,6 +27,8 @@ import { MentorTrainingCompletedComponent } from './mentor-training-completed';
 
 import { AdminBlockComponent } from './admin-block';
 import { AdminEditTechComponent } from './admin-edit-tech';
+import { AdminHomeComponent } from './admin-home';
+import { AdminLoginComponent } from './admin-login';
 
 import { AlertComponent } from './_components';
 import { TrainingSearchComponent } from './training-search';
@@ -57,7 +59,9 @@ import { TrainingSearchComponent } from './training-search';
 		MentorTrainingProgressComponent,
 		MentorEditSkillsComponent,
 		AdminBlockComponent,
-		AdminEditTechComponent,
+        AdminEditTechComponent,
+        AdminHomeComponent,
+        AdminLoginComponent,
         AlertComponent,
         TrainingSearchComponent,
     ],

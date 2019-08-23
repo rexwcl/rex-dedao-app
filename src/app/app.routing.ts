@@ -17,11 +17,15 @@ import { MentorEditSkillsComponent } from './mentor-edit-skills';
 
 import { AdminBlockComponent } from './admin-block';
 import { AdminEditTechComponent } from './admin-edit-tech';
+import { AdminLoginComponent } from './admin-login';
+import { AdminHomeComponent } from './admin-home';
 
 import { TrainingSearchComponent } from './training-search';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
+	{ path: 'adminHome', component: AdminHomeComponent, canActivate: [AuthGuard] },
+	{ path: 'adminLogin', component: AdminLoginComponent },
     { path: 'userHome', component: UserHomeComponent, canActivate: [AuthGuard] },
     { path: 'userLogin', component: UserLoginComponent },
     { path: 'userRegister', component: UserRegisterComponent },

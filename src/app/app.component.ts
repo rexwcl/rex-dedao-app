@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
-import { User, Mentor } from './_models';
+import { User, Mentor, Admin } from './_models';
 
 import './_content/app.less';
 
@@ -10,6 +10,7 @@ import './_content/app.less';
 export class AppComponent {
     currentUser: User;
     currentMentor: Mentor;
+    currentAdmin: Admin;
 
     constructor(
         private router: Router,
@@ -17,6 +18,7 @@ export class AppComponent {
     ) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
         this.authenticationService.currentMentor.subscribe(x => this.currentMentor = x);
+        this.authenticationService.currentAdmin.subscribe(x => this.currentAdmin = x);
     }
 
     logout() {
@@ -26,6 +28,9 @@ export class AppComponent {
         } else if (this.currentMentor) {
             this.authenticationService.mentorLogout();
             this.router.navigate(['/mentorLogin']);
+        } else if (this.currentAdmin) {
+            this.authenticationService.adminLogout();
+            this.router.navigate(['/adminLogin']);
         }
        
     }

@@ -1,11 +1,11 @@
 ﻿<h2>Admin Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="adminName">Email</label>
-        <input type="email" formControlName="adminName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adminName.errors }" />
-        <div *ngIf="submitted && f.adminName.errors" class="invalid-feedback">
-            <div *ngIf="f.adminName.errors.required">Email address is required</div>
-            <div *ngIf="f.adminName.errors.email">Email address is invalid</div>
+        <label for="username">Email</label>
+        <input type="email" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Email address is required</div>
+            <div *ngIf="f.username.errors.email">Email address is invalid</div>
         </div>
     </div>
     <div class="form-group">
