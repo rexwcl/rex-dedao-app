@@ -1,28 +1,28 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
-import { UserHomeComponent } from './user-home';
-import { UserLoginComponent } from './user-login';
-import { UserRegisterComponent } from './user-register';
-import { UserTrainingProgressComponent } from './user-training-progress';
-import { UserTrainingCompletedComponent } from './user-training-completed';
-import { UserNotificationComponent } from './user-notification';
+import { UserHomeComponent } from './user/user-home';
+import { UserLoginComponent } from './user/user-login';
+import { UserRegisterComponent } from './user/user-register';
+import { UserTrainingProgressComponent } from './user/user-training-progress';
+import { UserTrainingCompletedComponent } from './user/user-training-completed';
+import { UserNotificationComponent } from './user/user-notification';
 
-import { MentorHomeComponent } from './mentor-home';
-import { MentorLoginComponent } from './mentor-login';
-import { MentorRegisterComponent } from './mentor-register';
-import { MentorHistoryComponent } from './mentor-history';
-import { MentorPaymentsComponent } from './mentor-payments';
-import { MentorTrainingCompletedComponent } from './mentor-training-completed';
-import { MentorTrainingProgressComponent } from './mentor-training-progress';
-import { MentorEditSkillsComponent } from './mentor-edit-skills';
-import { MentorNotificationComponent } from './mentor-notification';
+import { MentorHomeComponent } from './mentor/mentor-home';
+import { MentorLoginComponent } from './mentor/mentor-login';
+import { MentorRegisterComponent } from './mentor/mentor-register';
+import { MentorHistoryComponent } from './mentor/mentor-history';
+import { MentorPaymentsComponent } from './mentor/mentor-payments';
+import { MentorTrainingCompletedComponent } from './mentor/mentor-training-completed';
+import { MentorTrainingProgressComponent } from './mentor/mentor-training-progress';
+import { MentorEditSkillsComponent } from './mentor/mentor-edit-skills';
+import { MentorNotificationComponent } from './mentor/mentor-notification';
 
-import { AdminBlockComponent } from './admin-block';
-import { AdminEditTechComponent } from './admin-edit-tech';
-import { AdminLoginComponent } from './admin-login';
-import { AdminHomeComponent } from './admin-home';
+import { AdminBlockComponent } from './admin/admin-block';
+import { AdminEditTechComponent } from './admin/admin-edit-tech';
+import { AdminLoginComponent } from './admin/admin-login';
+import { AdminHomeComponent } from './admin/admin-home';
 
-import { TrainingSearchComponent } from './training-search';
+import { TrainingSearchComponent } from './user/training-search';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
