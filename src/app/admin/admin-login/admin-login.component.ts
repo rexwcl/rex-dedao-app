@@ -56,6 +56,7 @@ export class AdminLoginComponent implements OnInit {
                 data => {
                     console.log(data);
                     this.router.navigate(['/adminHome']);
+                    //this.loading = false;
                 },
                 error => {
                     this.alertService.error(error);

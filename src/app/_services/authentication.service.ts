@@ -36,7 +36,6 @@ export class AuthenticationService {
     }
 	
 	public get currentAdminValue(): Admin {
-        console.log(this.currentAdminSubject.value);
         return this.currentAdminSubject.value;
     }
 
