@@ -48,7 +48,7 @@ const routes: Routes = [
 	{ path: 'trainingSearch', component: TrainingSearchComponent },
 	
     // otherwise redirect to home
-    // { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '' }
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);
