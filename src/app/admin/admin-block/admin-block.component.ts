@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, filter, debounceTime, tap, switchAll } from 'rxjs/operators';
-import { Mentor } from '@/_models';
-import { MentorService, UserService } from '@/_services';
+import { Mentor, User } from '@/_models';
+import { MentorService, UserService, AlertService } from '@/_services';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -14,16 +14,16 @@ import { first } from 'rxjs/operators';
 export class AdminBlockComponent implements OnInit {
   mentors = [];
   users = [];
-  constructor( private mentorService: MentorService, private userService: UserService ) {}
+  constructor( 
+    private mentorService: MentorService, 
+    private userService: UserService,
+    private alertService: AlertService 
+    ) {}
 
   ngOnInit() {
     this.loadAllMentors();
     this.loadAllUsers();
   }
-
-  // isBlocked(){
-  //    return true;
-  // }
 
   blockMentor(id: number) {
     this.mentorService.delete(id)
@@ -33,8 +33,11 @@ export class AdminBlockComponent implements OnInit {
 
   private loadAllMentors() {
     this.mentorService.getAll()
-        .pipe(first())
-        .subscribe(mentors => this.mentors = mentors);
+        .subscribe(
+          mentors => {
+                this.mentors = mentors;
+              }
+        );
   }
 
   blockUser(id: number) {
@@ -45,8 +48,11 @@ export class AdminBlockComponent implements OnInit {
 
   private loadAllUsers() {
     this.userService.getAll()
-        .pipe(first())
-        .subscribe(users => this.users = users);
+    .subscribe(
+      users => {
+          this.users = users;
+        }
+    );
   }
 
 }

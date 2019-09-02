@@ -116,17 +116,24 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+                console.log('getUsers');
+            }
             return ok(users);
         }
 
         function getMentors() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()){
+                // return unauthorized();
+                console.log("getMentors");
+            }
             return ok(mentors);
         }
 
         function deleteUser() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn())  {
+                console.log('deleteUser');
+            }
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem('users', JSON.stringify(users));
@@ -134,7 +141,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function deleteMentor() {
-            if (!isLoggedIn()) return unauthorized();
+            if (!isLoggedIn()) {
+                console.log('deleteMentor');
+            }
 
             mentors = mentors.filter(x => x.id !== idFromUrl());
             localStorage.setItem('mentors', JSON.stringify(mentors));
