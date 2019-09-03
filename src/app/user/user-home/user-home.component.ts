@@ -2,8 +2,8 @@
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { User } from '@/_models';
-import { AuthenticationService } from '@/_services';
+import { User, SearchTrainings } from '@/_models';
+import { AuthenticationService, UserService } from '@/_services';
 
 @Component({ templateUrl: 'user-home.component.html' })
 export class UserHomeComponent implements OnInit {
@@ -11,9 +11,12 @@ export class UserHomeComponent implements OnInit {
     searchForm: FormGroup;
     submitted = false;
     loading = false;
+    trainings = [];
+    training: SearchTrainings;
 
     constructor(
         private authenticationService: AuthenticationService,
+        private userService: UserService,
         private formBuilder: FormBuilder
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
@@ -26,20 +29,21 @@ export class UserHomeComponent implements OnInit {
         });
     }
 
-    onSubmit() {
-        // this.submitted = true;
+    // convenience getter for easy access to form fields
+    get f() { return this.searchForm.controls; }
 
-        // this.loading = true;
-        // this.authenticationService.mentorLogin(this.f.username.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             console.log("here to navigate");
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
+    onSubmit() {
+        this.submitted = true;
+        this.training = new SearchTrainings();
+        this.training.trainerAvailablePeriod = this.f.trainerAvailablePeriod.value;
+        this.training.searchText = this.f.searchText.value;
+
+        this.userService.searchTrainings(this.training)
+                .subscribe(
+                  trainings => {
+                        console.log(trainings);
+                      }
+                );
+          
     }
 }

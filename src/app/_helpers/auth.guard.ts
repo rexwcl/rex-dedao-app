@@ -14,12 +14,18 @@ export class AuthGuard implements CanActivate {
         const currentUser = this.authenticationService.currentUserValue;
         const currentMentor = this.authenticationService.currentMentorValue;
         const currentAdmin = this.authenticationService.currentAdminValue;
-        
+
         if (currentUser || currentMentor || currentAdmin) {
             // authorised so return true
             return true;
         } 
         
+        if (!currentAdmin) {
+            // not logged in so redirect to login page with the return url
+               this.router.navigate(['/adminLogin'], { queryParams: { returnUrl: state.url }});
+               return false;
+        }
+
         if (!currentUser) {
              // not logged in so redirect to login page with the return url
             this.router.navigate(['/userLogin'], { queryParams: { returnUrl: state.url }});
@@ -32,11 +38,5 @@ export class AuthGuard implements CanActivate {
            return false;
        }
 
-       if (!currentAdmin) {
-        // not logged in so redirect to login page with the return url
-           this.router.navigate(['/adminLogin'], { queryParams: { returnUrl: state.url }});
-           return false;
-       }
-        
     }
 }

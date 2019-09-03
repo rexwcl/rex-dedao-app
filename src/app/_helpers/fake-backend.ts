@@ -32,6 +32,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/users/trainings') && method === 'POST':
+                    return getTrainings();
                 case url.endsWith('/mentors/authenticate') && method === 'POST':
                     return authenticateMentor();
                 case url.endsWith('/mentors/register') && method === 'POST':
@@ -49,6 +51,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         // route functions
+        function getTrainings() {
+            return ok({
+                id: 1,
+                name: 'rex'
+            }
+            );
+        }
 
         function authenticateUser() {
             const { username, password } = body;
