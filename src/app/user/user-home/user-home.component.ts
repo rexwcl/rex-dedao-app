@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup} from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { User, SearchTrainings } from '@/_models';
-import { AuthenticationService, UserService } from '@/_services';
+import { AuthenticationService, TrainingService } from '@/_services';
 
 @Component({ templateUrl: 'user-home.component.html' })
 export class UserHomeComponent implements OnInit {
@@ -16,7 +16,7 @@ export class UserHomeComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-        private userService: UserService,
+        private trainingService: TrainingService,
         private formBuilder: FormBuilder
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
@@ -38,7 +38,7 @@ export class UserHomeComponent implements OnInit {
         this.training.trainerAvailablePeriod = this.f.trainerAvailablePeriod.value;
         this.training.searchText = this.f.searchText.value;
 
-        this.userService.searchTrainings(this.training)
+        this.trainingService.search(this.training)
                 .subscribe(
                   trainings => {
                         console.log(trainings);
@@ -46,4 +46,5 @@ export class UserHomeComponent implements OnInit {
                 );
           
     }
+
 }

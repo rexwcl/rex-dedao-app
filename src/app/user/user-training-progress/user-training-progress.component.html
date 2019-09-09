@@ -3,6 +3,7 @@
     <div class="col"> <caption>Description</caption> </div>
     <div class="col"> <caption>Trainer Name</caption> </div>
     <div class="col"> <caption>Avg Rating</caption> </div>
+    <div class="col"> <caption>Fee Charged</caption> </div>
     <div class="col"> <caption>No. of Trainings Completed</caption> </div>
 </div>
 
@@ -21,8 +22,8 @@
         <p>{{ result.avgRating }}</p>
     </div>
     <div class="col">
-            <p>{{ result.feeCharged }}</p>
-        </div>   
+        <p>{{ result.feeCharged }}</p>
+    </div>   
     <div class="col">
         <p>{{ result.numOfTrainingsCompleted }}</p>
         <a (click)="rateTraining()" class="btn btn-primary" role="button">

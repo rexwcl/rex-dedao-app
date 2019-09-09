@@ -8,6 +8,11 @@ import { Admin } from '@/_models';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let mentors = JSON.parse(localStorage.getItem('mentors')) || [];
+let trainingsInProgressOfUsers = [];
+let trainingsCompletedOfUsers = [];
+let trainingsInProgressOfMentors = [];
+let trainingsCompletedOfMentors = [];
+
 
 
 @Injectable()
@@ -32,8 +37,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
-                case url.endsWith('/users/trainings') && method === 'POST':
-                    return getTrainings();
                 case url.endsWith('/mentors/authenticate') && method === 'POST':
                     return authenticateMentor();
                 case url.endsWith('/mentors/register') && method === 'POST':
@@ -44,6 +47,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         return deleteMentor();   
                 case url.endsWith('/admin/authenticate') && method === 'POST':
                         return authenticateAdmin(); 
+                case url.endsWith('/trainings/search') && method === 'POST':
+                        return getTrainings();
+                case url.match(/\/users\/progress\/\d+$/) && method === 'GET':
+                        return getProgressTrainingsOfUser();
+                case url.match(/\/users\/completed\/\d+$/) && method === 'GET':
+                        return getCompletedTrainingsOfUser();
+                case url.match(/\/mentors\/progress\/\d+$/) && method === 'GET':
+                        return getProgressTrainingsOfMentor();
+                case url.match(/\/mentors\/completed\/\d+$/) && method === 'GET':
+                        return getCompletedTrainingsOfMentor();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -54,9 +67,33 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getTrainings() {
             return ok({
                 id: 1,
-                name: 'rex'
+                name: 'getTrainings'
             }
             );
+        }
+
+        function getProgressTrainingsOfUser() {
+            let result:object = {
+                trainingDescription: 'niu',
+                trainerName: 'Rex', 
+                avgRating: 5,
+                feeCharged: '$100',
+                numOfTrainingsCompleted: 100
+              };
+            this.trainingsInProgressOfUsers.push(result);
+            return ok(this.trainingsInProgressOfUsers);
+        }
+
+        function getCompletedTrainingsOfUser() {
+            return ok(this.trainingsCompletedOfUsers);
+        }
+
+        function getProgressTrainingsOfMentor() {
+            return ok(this.trainingsInProgressOfMentors);
+        }
+
+        function getCompletedTrainingsOfMentor() {
+            return ok(this.trainingsCompletedOfMentors);
         }
 
         function authenticateUser() {

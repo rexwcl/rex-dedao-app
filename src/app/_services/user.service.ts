@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User, SearchTrainings } from '@/_models';
+import { User } from '@/_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -17,9 +17,5 @@ export class UserService {
 
     delete(id: number) {
         return this.http.delete(`${config.apiUrl}/users/${id}`);
-    }
-
-    searchTrainings(searchTrainings: SearchTrainings) {
-        return this.http.post(`${config.apiUrl}/users/trainings`, searchTrainings);
     }
 }

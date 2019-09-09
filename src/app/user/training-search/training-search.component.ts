@@ -36,4 +36,7 @@ export class TrainingSearchComponent implements OnInit {
     this.results.push(this.result);
   }
  
+  private proposeTraining() {
+     console.log('hello');
+  }
 }
