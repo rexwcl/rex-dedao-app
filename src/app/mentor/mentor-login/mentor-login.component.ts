@@ -54,7 +54,6 @@ export class MentorLoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    console.log("here to navigate");
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

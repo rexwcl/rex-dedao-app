@@ -1,9 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User, Mentor, Admin } from '@/_models';
+
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -27,6 +31,8 @@ export class AuthenticationService {
         this.currentAdmin = this.currentAdminSubject.asObservable();
     }
 
+    private userUrl = 'http://localhost:8081/user-portal/users';
+
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
@@ -40,12 +46,17 @@ export class AuthenticationService {
     }
 
     userLogin(username, password) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
+        return this.http.post<any>(`${this.userUrl}/authenticate`, { username, password })
             .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
+                if (user == null) {
+                    return throwError({ error: { message: 'Username or password is incorrect' } });
+                } else {
+                     // store user details and jwt token in local storage to keep user logged in between page 
+                    console.log('hello');
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                    return user;
+                }
             }));
     }
 
