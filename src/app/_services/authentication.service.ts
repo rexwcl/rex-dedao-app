@@ -32,6 +32,8 @@ export class AuthenticationService {
     }
 
     private userUrl = 'http://localhost:8081/user-portal/users';
+    private mentorUrl = 'http://localhost:8081/mentor-portal/mentors';
+    private adminUrl = '';
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
@@ -52,7 +54,6 @@ export class AuthenticationService {
                     return throwError({ error: { message: 'Username or password is incorrect' } });
                 } else {
                      // store user details and jwt token in local storage to keep user logged in between page 
-                    console.log('hello');
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                     return user;
@@ -61,12 +62,23 @@ export class AuthenticationService {
     }
 
     mentorLogin(username, password) {
-        return this.http.post<any>(`${config.apiUrl}/mentors/authenticate`, { username, password })
+        // return this.http.post<any>(`${config.apiUrl}/mentors/authenticate`, { username, password })
+        //     .pipe(map(mentor => {
+        //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //         localStorage.setItem('currentMentor', JSON.stringify(mentor));
+        //         this.currentMentorSubject.next(mentor);
+        //         return mentor;
+        //     }));
+        return this.http.post<any>(`${this.mentorUrl}/authenticate`, { username, password })
             .pipe(map(mentor => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentMentor', JSON.stringify(mentor));
-                this.currentMentorSubject.next(mentor);
-                return mentor;
+                if (mentor == null) {
+                    return throwError({ error: { message: 'Username or password is incorrect' } });
+                } else {
+                     // store user details and jwt token in local storage to keep user logged in between page 
+                    localStorage.setItem('currentMentor', JSON.stringify(mentor));
+                    this.currentMentorSubject.next(mentor);
+                    return mentor;
+                }
             }));
     }
 	

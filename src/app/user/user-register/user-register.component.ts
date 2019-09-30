@@ -56,7 +56,8 @@ export class UserRegisterComponent implements OnInit {
                     this.router.navigate(['/userLogin']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    // this.alertService.error(error);
+                    this.alertService.error('Username is already taken');
                     this.loading = false;
                 });
     }

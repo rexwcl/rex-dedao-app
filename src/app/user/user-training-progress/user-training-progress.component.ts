@@ -19,7 +19,6 @@ export class UserTrainingProgressComponent implements OnInit {
 
   private loadTrainingsInProgress() {
     let user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(user.id);
     this.trainingService.getTrainingsInProgressOfUser(user.id)
     .subscribe(
       data => {

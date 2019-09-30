@@ -56,7 +56,8 @@ export class MentorRegisterComponent implements OnInit {
                     this.router.navigate(['/mentorLogin']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    // this.alertService.error(error);
+                    this.alertService.error('Username is already taken');
                     this.loading = false;
                 });
     }
