@@ -7,16 +7,21 @@ import { Mentor } from '@/_models';
 export class MentorService {
     constructor(private http: HttpClient) { }
 
+    private mentorUrl = 'http://localhost:8081/mentor-portal/mentors';
+
     getAll() {
-        return this.http.get<Mentor[]>(`${config.apiUrl}/mentors`);
+        //return this.http.get<Mentor[]>(`${config.apiUrl}/mentors`);
+        return this.http.get<Mentor[]>(this.mentorUrl);
+
     }
 
     register(mentor: Mentor) {
-        return this.http.post(`${config.apiUrl}/mentors/register`, mentor);
+        //return this.http.post(`${config.apiUrl}/mentors/register`, mentor);
+        return this.http.post<Mentor>(this.mentorUrl, mentor);
     }
 
     delete(id: number) {
-        return this.http.delete(`${config.apiUrl}/mentors/${id}`);
+        //return this.http.delete(`${config.apiUrl}/mentors/${id}`);
+        return this.http.delete(`${this.mentorUrl}/${id}`);
     }
-
 }
