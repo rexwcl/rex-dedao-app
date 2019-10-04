@@ -24,12 +24,14 @@ export class TrainingSearchComponent implements OnInit {
   }
 
   result:object = {
-    trainerName: 'Vincent',
+    id: 1,
+    trainingDescription: 'niu',
+    trainerName: 'Daniel', 
     avgRating: 5,
-    numOfTrainingsCompleted: 10,
-    feeCharged: '$100',
-    trainingUrl: '/mentorLogin'   
-  }
+    feeCharged: 100,
+    numOfTrainingsCompleted: 100,
+    trainingUrl: 'http://training1'
+  };
 
   private loadTrainings() {
     this.results.push(this.result);

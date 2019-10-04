@@ -74,11 +74,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function getProgressTrainingsOfUser() {
             let result:object = {
+                id: 1,
                 trainingDescription: 'niu',
                 trainerName: 'Rex', 
                 avgRating: 5,
-                feeCharged: '$100',
-                numOfTrainingsCompleted: 100
+                feeCharged: 100,
+                numOfTrainingsCompleted: 100,
+                trainingUrl: 'http://training1'
               };
             this.trainingsInProgressOfUsers.push(result);
             return ok(this.trainingsInProgressOfUsers);
