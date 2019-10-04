@@ -33,7 +33,7 @@ export class AuthenticationService {
 
     private userUrl = 'http://localhost:8081/user-portal/users';
     private mentorUrl = 'http://localhost:8082/mentor-portal/mentors';
-    private adminUrl = 'http://localhost:8084/admin-portal/admin/';
+    private adminUrl = 'http://localhost:8084/admin-portal/admin';
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
