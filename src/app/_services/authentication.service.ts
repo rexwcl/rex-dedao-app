@@ -33,7 +33,7 @@ export class AuthenticationService {
 
     private userUrl = 'http://localhost:8081/user-portal/users';
     private mentorUrl = 'http://localhost:8082/mentor-portal/mentors';
-    private adminUrl = '';
+    private adminUrl = 'http://localhost:8084/admin-portal/admin/';
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
@@ -83,13 +83,25 @@ export class AuthenticationService {
     }
 	
 	adminLogin(username, password) {
-        return this.http.post<any>(`${config.apiUrl}/admin/authenticate`, { username, password })
-            .pipe(map(admin => {
+        // return this.http.post<any>(`${config.apiUrl}/admin/authenticate`, { username, password })
+        //     .pipe(map(admin => {
+        //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //         localStorage.setItem('currentAdmin', JSON.stringify(admin));
+        //         this.currentAdminSubject.next(admin);
+        //         return admin;
+        //     }));
+        return this.http.post<any>(`${this.adminUrl}/authenticate`, { username, password })
+        .pipe(map(admin => {
+            if (admin == null) {
+                return throwError({ error: { message: 'Username or password is incorrect' } });
+            } else {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentAdmin', JSON.stringify(admin));
                 this.currentAdminSubject.next(admin);
                 return admin;
-            }));
+            }
+        }));
+
     }
 
     userLogout() {
