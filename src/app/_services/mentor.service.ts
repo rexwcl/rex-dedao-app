@@ -7,7 +7,7 @@ import { Mentor } from '@/_models';
 export class MentorService {
     constructor(private http: HttpClient) { }
 
-    private mentorUrl = 'http://localhost:8082/mentor-portal/mentors';
+    private mentorUrl = 'http://172.16.69.196:8082/mentor-portal/mentors';
 
     getAll() {
         //return this.http.get<Mentor[]>(`${config.apiUrl}/mentors`);

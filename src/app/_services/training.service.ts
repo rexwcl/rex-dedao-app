@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TrainingService {
     constructor(private http: HttpClient) { }
 
-    private trainingUrl = 'http://localhost:8083/training-portal/trainings';    
+    private trainingUrl = 'http://172.16.69.196:8083/training-portal/trainings';    
     search(searchTrainings: SearchTrainings) {
         // return this.http.post(`${config.apiUrl}/trainings/search`, searchTrainings);
         return this.http.post(`${this.trainingUrl}/search`, searchTrainings)
