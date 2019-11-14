@@ -31,9 +31,9 @@ export class AuthenticationService {
         this.currentAdmin = this.currentAdminSubject.asObservable();
     }
 
-    private userUrl = 'http://172.16.69.196:8081/user-portal/users';
-    private mentorUrl = 'http://172.16.69.196:8082/mentor-portal/mentors';
-    private adminUrl = 'http://172.16.69.196:8084/admin-portal/admin';
+    private userUrl = 'http://47.98.62.220:8081/user-portal/users';
+    private mentorUrl = 'http://47.98.62.220:8082/mentor-portal/mentors';
+    private adminUrl = 'http://47.98.62.220:8084/admin-portal/admin';
 
     public get currentUserValue(): User {
         return this.currentUserSubject.value;

@@ -7,7 +7,7 @@ import { User } from '@/_models';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    private userUrl = 'http://172.16.69.196:8081/user-portal/users';
+    private userUrl = 'http://47.98.62.220:8081/user-portal/users';
 
     getAll() {
         //return this.http.get<User[]>(`${config.apiUrl}/users`);
